@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+  api:
+    build:
+      context: ./api
+    environment:
+      - MONGO_URI=mongodb+srv://yash:hsay@cluster0-mxy94.mongodb.net/test?retryWrites=true&w=majority
+      - PORT=8080
